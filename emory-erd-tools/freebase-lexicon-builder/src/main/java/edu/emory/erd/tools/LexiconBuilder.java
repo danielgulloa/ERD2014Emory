@@ -55,7 +55,7 @@ public class LexiconBuilder {
         conf.setJobName("freebase-lexicon-builder");
 
         conf.setOutputKeyClass(Text.class);
-        conf.setOutputValueClass(IntWritable.class);
+        conf.setOutputValueClass(Text.class);
 
         conf.setMapperClass(LexiconBuilderMapper.class);
         conf.setCombinerClass(LexiconBuilderReducer.class);
