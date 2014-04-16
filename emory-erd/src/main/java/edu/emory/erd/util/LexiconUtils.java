@@ -48,6 +48,7 @@ public class LexiconUtils {
     bReader = new BufferedReader(
             new FileReader(inputFilePath));
     int numMissingEntities = 0;
+    int numMatchedEntities = 0;
     while ((line = bReader.readLine()) != null) {
       
       String datavalue[] = line.split("\t");
@@ -55,10 +56,14 @@ public class LexiconUtils {
         numMissingEntities++;
         //System.out.println(line + " seems not existing in the lexcon");
         //System.out.println(datavalue[0] + " "+ datavalue[1] + " seems not existing in the lexcon");
+      } else{
+        numMatchedEntities++;
       }
   
     }
-    System.out.println(numMissingEntities);
+    System.out.println("numMissingEntities = " + numMissingEntities);
+    System.out.println("numMatchedEntities = " + numMatchedEntities);
+    
     bReader.close();
     
   }
@@ -66,7 +71,8 @@ public class LexiconUtils {
   public static void main(String[] args) throws IOException {
     try {
       //for (String inputFile : args) {
-      lexiconMatching(args[0], args[1]); // args[0] = targetFilePath; args[1] = inputFilePath;
+      // targeted file downloaded from http://web-ngram.research.microsoft.com/erd2014/Docs/entity.tsv
+      lexiconMatching(args[0], args[1]); // args[0] = targetFilePath; args[1] = inputFilePath; 
       //}
     } catch (IOException exc) {
         System.err.println(exc.getMessage());
