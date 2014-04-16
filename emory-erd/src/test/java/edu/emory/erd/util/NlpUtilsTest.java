@@ -24,8 +24,19 @@ public class NlpUtilsTest {
     public void testSentenceDetector() {
         String[] sents = NlpUtils.detectSentences("This is sentence one. This is sentence two.");
         assertEquals(2, sents.length);
-        sents = NlpUtils.detectSentences("This is just a single sentence about U.S.A.");
+    }
+
+    @Test
+    public void testSentenceDetectorWithAcronym() {
+        String[] sents = NlpUtils.detectSentences("This is just a single sentence about U.S.A.");
         assertEquals(1, sents.length);
+    }
+
+    @Test
+    public void testSentenceDetectorWithLineBreaks() {
+        String[] sents = NlpUtils.detectSentences("This is sentence 1... \n\nThis is my sentence two.");
+        assertEquals(2, sents.length);
+
     }
 
     /**
@@ -34,6 +45,13 @@ public class NlpUtilsTest {
     @Test
     public void testTokenizer() {
         String[] words = NlpUtils.tokenize("This is just a single sentence about U.S.A.");
+        assertEquals(8, words.length);
+    }
+
+    @Test
+    public void testTokenizerWithExtraSpaces() {
+        String[] words = NlpUtils.tokenize("This \n sentence: has 5 words!!");
+        // Actually, punctuation will be considered a word here, so 8 in total.
         assertEquals(8, words.length);
     }
 

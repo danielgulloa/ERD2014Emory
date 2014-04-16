@@ -12,8 +12,9 @@ import java.util.Set;
  * Represents a set of non-overlapping and non-contradicting annotations.
  */
 public class AnnotationSet implements Iterable<Annotation> {
-    private int setId;
+    private final int setId;
     private Set<Annotation> annotations;
+    private double score;  // Confidence score for this annotation set.
 
     /**
      * Create AnnotationSet with the given id.
@@ -22,6 +23,7 @@ public class AnnotationSet implements Iterable<Annotation> {
     public AnnotationSet(int id) {
         setId = id;
         annotations = new HashSet<Annotation>();
+        score = 1.0;
     }
 
     /**
@@ -34,7 +36,7 @@ public class AnnotationSet implements Iterable<Annotation> {
         } else {
             // Try all annotations and check that they are not intersecting
             for (Annotation existingAnnotation : annotations) {
-                // We can probably speed-up this with segment tree, but I think it's ok for now. Document is unlikely
+                // We can probably speed this up with segment tree, but I think it's ok for now. Document is unlikely
                 // to have too many annotations.
                 if (annotation.getSpan().intersects(existingAnnotation.getSpan()))
                     throw new IllegalArgumentException("Annotations in the same AnnotationSet cannot overlap");
@@ -62,5 +64,24 @@ public class AnnotationSet implements Iterable<Annotation> {
      */
     public int getSetId() {
         return setId;
+    }
+
+    /**
+     * Returns the confidence score for the current annotation set.
+     * @return Confidence score (from 0 to 1).
+     */
+    public double getScore() {
+        return score;
+    }
+
+    /**
+     * Sets the new confidence score for the current AnnotationSet.
+     * @param newScore new confidence score from 0 to 1.
+     * @throws IllegalArgumentException if new score is less than 0 or greater than 1.
+     */
+    public void setScore(double newScore) throws IllegalArgumentException {
+        if (newScore < 0 || newScore > 1)
+            throw new IllegalArgumentException("ArgumentSet confidence score should be between 0 and 1.");
+        score = newScore;
     }
 }

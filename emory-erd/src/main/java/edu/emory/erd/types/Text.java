@@ -22,11 +22,9 @@ final public class Text {
         String[] sentencesText = NlpUtils.detectSentences(rawText);
         sentences = new Sentence[sentencesText.length];
         int index = 0;
-        int offset = 0;
         for (String sentText : sentencesText) {
-            sentences[index++] = new Sentence(sentText, offset);
-            // TODO: I think sentence detector is going to mess with some characters and offset will be wrong!
-            offset += sentText.length() + 1;
+            // TODO: searching for a sentence each time is really bad, but sentence detector strips extra punctuation.
+            sentences[index++] = new Sentence(sentText, text.indexOf(sentText));
         }
     }
 
@@ -37,5 +35,13 @@ final public class Text {
      */
     public String getSpanText(Span span) {
         return rawText.substring(span.getStart(), span.getEnd());
+    }
+
+    /**
+     * Returns text sentences.
+     * @return Array of Sentences, each string contains a sentence.
+     */
+    public Sentence[] getSentences() {
+        return sentences;
     }
 }

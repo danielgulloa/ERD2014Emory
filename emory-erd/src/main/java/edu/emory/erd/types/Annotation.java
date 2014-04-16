@@ -12,11 +12,17 @@ final public class Annotation {
     private final Span span;
     // Entity the span is annotated with
     private final EntityInfo entityInfo;
+    // Confidence score for the entity annotation.
+    private final double score;
 
-    public Annotation(String doc, int begin, int end, EntityInfo info) {
-        sourceText = new Text(doc);
+    public Annotation(Text docText, int begin, int end, EntityInfo info, double score) throws IllegalArgumentException {
+        if (score < 0 || score > 1)
+            throw new IllegalArgumentException("Annotation confidence score should be from 0 to 1.");
+
+        sourceText = docText;
         span = new Span(begin, end);
         entityInfo = info;
+        this.score = score;
     }
 
     /** Returns the text of the annotated mention
@@ -45,6 +51,14 @@ final public class Annotation {
      */
     public Span getSpan() {
         return span;
+    }
+
+    /**
+     * Returns the confidence score for the current annotation.
+     * @return Annotation confidence score (from 0 to 1).
+     */
+    public double getScore() {
+        return this.score;
     }
 
 }

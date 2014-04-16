@@ -14,6 +14,18 @@ public class AnnotatorBase implements Annotator {
     private Disambiguator disambiguator;
 
     /**
+     * Creates basic annotator using mention builder and disambiguator provided as parameter.
+     * @param mentionBuilder An object of class implementing MentionBuilder interface, which returns a set of potential
+     *                       entity mentions in the provided document.
+     * @param disambiguator An object of class implementing Disambiguator interface, which detects which combination
+     *                      of entities could be mentioned in the document.
+     */
+    public AnnotatorBase(MentionBuilder mentionBuilder, Disambiguator disambiguator) {
+        this.mentionBuilder = mentionBuilder;
+        this.disambiguator = disambiguator;
+    }
+
+    /**
      * Base annotator pipeline, which consists of applying MentionBuilder and Disambiguator in a sequence.
      * @param doc Document to annotate.
      * @return List of possible annotation sets.
