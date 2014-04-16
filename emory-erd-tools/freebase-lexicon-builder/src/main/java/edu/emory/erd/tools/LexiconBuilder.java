@@ -64,8 +64,8 @@ public class LexiconBuilder {
         conf.setInputFormat(TextInputFormat.class);
         conf.setOutputFormat(TextOutputFormat.class);
 
-        FileInputFormat.setInputPaths(conf, new Path(args[0]));
-        FileOutputFormat.setOutputPath(conf, new Path(args[1]));
+        FileInputFormat.setInputPaths(conf, new Path(args[0])); // args[0] = "datasets/test/"
+        FileOutputFormat.setOutputPath(conf, new Path(args[1])); // args[1] = "datasets/output/"
 
         JobClient.runJob(conf);
     }
