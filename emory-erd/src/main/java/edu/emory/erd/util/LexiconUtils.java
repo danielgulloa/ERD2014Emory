@@ -66,7 +66,7 @@ public class LexiconUtils {
   public static void main(String[] args) throws IOException {
     try {
       //for (String inputFile : args) {
-      lexiconMatching("/home/xchen97/git/ERD2014Emory/emory-erd-tools/freebase-lexicon-builder/datasets/lexicon.txt", "/home/xchen97/git/ERD2014Emory/emory-erd-tools/freebase-lexicon-builder/datasets/entity1000line.tsv");//args[0], args[1]); // args[0] = targetFilePath; args[1] = inputFilePath;
+      lexiconMatching(args[0], args[1]); // args[0] = targetFilePath; args[1] = inputFilePath;
       //}
     } catch (IOException exc) {
         System.err.println(exc.getMessage());
