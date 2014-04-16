@@ -31,4 +31,20 @@ final public class Annotation {
         return entityInfo;
     }
 
+    /**
+     * Returns source document to which the annotated span belongs.
+     * @return A text of the document as Text.
+     */
+    public Text getDocumentText() {
+        return sourceText;
+    }
+
+    /**
+     * Returns a Span object for annotated text.
+     * @return An object of class Span which tells us which interval in the document was annotated.
+     */
+    public Span getSpan() {
+        return span;
+    }
+
 }
