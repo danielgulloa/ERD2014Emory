@@ -15,12 +15,12 @@ final public class Annotation {
     // Confidence score for the entity annotation.
     private final double score;
 
-    public Annotation(Text docText, int begin, int end, EntityInfo info, double score) throws IllegalArgumentException {
+    public Annotation(Text docText, Span span, EntityInfo info, double score) throws IllegalArgumentException {
         if (score < 0 || score > 1)
             throw new IllegalArgumentException("Annotation confidence score should be from 0 to 1.");
 
         sourceText = docText;
-        span = new Span(begin, end);
+        this.span = span;
         entityInfo = info;
         this.score = score;
     }

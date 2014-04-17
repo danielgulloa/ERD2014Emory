@@ -1,11 +1,9 @@
 package edu.emory.erd.types;
 
 import edu.emory.erd.types.Annotation;
-import opennlp.tools.util.Span;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 /**
