@@ -25,8 +25,8 @@ public class TextTest {
         assertEquals(3, sentences.length);
         assertEquals("And this is the third sentence.", sentences[2].getText());
         // !!! is considered "words", so we have 7 in total.
-        assertEquals(7, sentences[1].getWords().length);
-        assertEquals("third", sentences[2].getWords()[4]);
+        assertEquals(7, sentences[1].getWordsCount());
+        assertEquals("third", sentences[2].getWord(4));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class TextTest {
      */
     @Test
     public void testWordSpanPositions() {
-        assertEquals(sentences[1].getWords()[3], text.getSpanText(sentences[1].getWordSpan(3)));
+        assertEquals(sentences[1].getWord(3), text.getSpanText(sentences[1].getWordSpan(3)));
     }
 
 }

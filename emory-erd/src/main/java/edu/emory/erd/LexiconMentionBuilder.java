@@ -83,7 +83,7 @@ public class LexiconMentionBuilder implements MentionBuilder {
             int currentSpanStartWord = 0;
             int currentSpanEndWord = 1;
             // Go over all words.
-            while (currentSpanStartWord < sentence.getWords().length) {
+            while (currentSpanStartWord < sentence.getWordsCount()) {
                 Span currentSpan = new Span(sentence.getWordSpan(currentSpanStartWord).getStart(),
                         sentence.getWordSpan(currentSpanEndWord - 1).getEnd());
                 String phrase = document.getSpanText(currentSpan);
@@ -102,7 +102,7 @@ public class LexiconMentionBuilder implements MentionBuilder {
                     // If current phrase is a prefix of some mention.
                     ++currentSpanEndWord;
                 }
-                if (currentSpanEndWord > sentence.getWords().length) {
+                if (currentSpanEndWord > sentence.getWordsCount()) {
                     ++currentSpanStartWord;
                     currentSpanEndWord = currentSpanStartWord + 1;
                 }

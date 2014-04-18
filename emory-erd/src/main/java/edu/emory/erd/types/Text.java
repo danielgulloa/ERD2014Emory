@@ -44,4 +44,12 @@ final public class Text {
     public Sentence[] getSentences() {
         return sentences;
     }
+
+    /**
+     * Returns document text.
+     * @return String text of the current document.
+     */
+    public String getText() {
+        return rawText;
+    }
 }

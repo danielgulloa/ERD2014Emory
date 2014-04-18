@@ -1,10 +1,15 @@
 package edu.emory.erd.util;
 
+import edu.emory.erd.types.Annotation;
+import edu.emory.erd.types.Text;
 import edu.emory.erd.util.NlpUtils;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class NlpUtilsTest {
@@ -53,6 +58,18 @@ public class NlpUtilsTest {
         String[] words = NlpUtils.tokenize("This \n sentence: has 5 words!!");
         // Actually, punctuation will be considered a word here, so 8 in total.
         assertEquals(8, words.length);
+    }
+
+    @Test
+    public void testEntityDetector() {
+        List<Annotation> annotations =
+                NlpUtils.detectEntities(new Text("Michael Jackson was born in a Possum City. He was also called Mike."));
+        assertEquals(3, annotations.size());
+        assertEquals("PERSON", annotations.get(0).getEntityInfo().getId());
+        assertEquals("LOCATION", annotations.get(1).getEntityInfo().getId());
+        assertEquals("PERSON", annotations.get(2).getEntityInfo().getId());
+        assertEquals(30, annotations.get(1).getSpan().getStart());
+        assertEquals(41, annotations.get(1).getSpan().getEnd());
     }
 
 }
