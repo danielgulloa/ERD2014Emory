@@ -14,4 +14,4 @@ Wed. Apr. 9 2014: Inital task assignment
 3. Named entity tagger (Pawan)
 
 
-4. Dictionary? (Daniel)
+4. Dictionary (Daniel)
